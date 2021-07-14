@@ -1,16 +1,20 @@
-interface IArticle {
-    id: number
-    title: string
-    body: string
+interface INode {
+  uniqueId: string
+  componentId: number
+  configuration: {}
+  connectedTo:string[]
+  connectedFrom:string[]
   }
   
-  type ArticleState = {
-    articles: IArticle[]
+  type NodeState = {
+    nodes: INode[]
   }
   
-  type ArticleAction = {
+  type NodeAction = {
     type: string
-    article: IArticle
+    node: INode
   }
   
-  type DispatchType = (args: ArticleAction) => ArticleAction
+  type DispatchType = (args: NodeAction) => NodeAction
+  //this.props.addNode(
+  //  { uniqueId: cloneEl.id, componentId: item.componentId, configuration:{},connectedTo:[],connectedFrom:[] });

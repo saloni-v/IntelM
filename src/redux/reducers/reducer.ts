@@ -1,4 +1,6 @@
+import { Action } from 'redux';
 import { nodeConstants } from '../store/actionTypes';
+import NodeComp from '../../models/NodeComp';
 
 const initialState = {
     nodeList:[{ componentId: 1, id: 'locust', name: 'Locust', configuration: {instanceType: ['t2-micro', 't2-large']} ,vc:0},
@@ -10,7 +12,7 @@ const initialState = {
 }
 
 //nList:[{this.nList.push({ name: cloneEl.id, componentId: item.componentId, depth: [],configuration:{} });}]
- const reducer=(state = initialState, action) =>{
+ const reducer=(state = initialState, action:Action) =>{
   switch (action.type) {
     case nodeConstants.TYPE_OF_NODES:
         return {
