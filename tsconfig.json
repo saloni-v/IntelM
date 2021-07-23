@@ -12,12 +12,13 @@
       "sourceMap": true,
       "target": "esnext",
     },
-    "exclude": [
-      "node_modules"
-    ],
-    "extends":  ["./node_modules/react-redux-typescript-scripts/tslint.json",
-    "./node_modules/react-redux-typescript-scripts/tslint-react.json"],
-    "rules":    {}
+  
+    
+      "extends": ["tslint-react-redux-typescript-guide"],
+      "rules": {
+        // you can further customize this config here
+      }
+    
    /* "rules": {
       // override tslint-react rules here
       "jsx-wrap-multiline": false

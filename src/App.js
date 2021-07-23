@@ -12,7 +12,7 @@ import jsPlumb from "jsplumb/dist/js/jsplumb.min";
 class MyJsPlumb extends Component {
   constructor(props) {
     super(props);
-    this.state = { rps:0 }
+    this.state = { rps:0,apiResponse:"" }
     this.slidechanger=this.slidechanger.bind(this);
   }
   slidechanger(e) {
@@ -20,9 +20,9 @@ class MyJsPlumb extends Component {
     //var ref = e.target.value;
     this.setState({ rps: e });
   }
-  saveConnections(nodes,nodeConnections){
-
-
+  callApi(){
+    fetch("https://localhost:9000/testApi").then(res=>res.text())
+    .then(res=>this.setState({apiResponse:res}))
   }
 
 /*rpsconnection =(rpsconnection)=>{
@@ -35,6 +35,7 @@ class MyJsPlumb extends Component {
     return (  <div>
       <Provider store={store}>
       <Header slidechanger={this.slidechanger} jsplumb={jsplumb}/>
+      {this.state.apiResponse}
       <Main rps={this.state.rps} jsplumb={jsplumb}/>
       </Provider>
       <Footer/>

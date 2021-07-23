@@ -2,6 +2,12 @@ import { Action } from 'redux';
 import { nodeConstants } from '../store/actionTypes';
 import NodeComp from '../../models/NodeComp';
 
+
+let nList: Array<{ uniqueId: string,componentId:number,name:string, configuration: {} }>;
+interface nListState {
+  nList : [{}]
+ // this.nList.push({ name: cloneEl.id, componentId: item.componentId, depth: [],configuration:{} });
+}
 const initialState = {
     nodeList:[{ componentId: 1, id: 'locust', name: 'Locust', configuration: {instanceType: ['t2-micro', 't2-large']} ,vc:0},
     { componentId: 2, id: 'nginx', name: 'nginx', configuration: {instanceType: ['t2-micro', 't2-large']} ,vc:0},
@@ -12,7 +18,7 @@ const initialState = {
 }
 
 //nList:[{this.nList.push({ name: cloneEl.id, componentId: item.componentId, depth: [],configuration:{} });}]
- const reducer=(state = initialState, action:Action) =>{
+ const reducer=(state: any= initialState, action:any) =>{
   switch (action.type) {
     case nodeConstants.TYPE_OF_NODES:
         return {
@@ -27,16 +33,16 @@ const initialState = {
       };
     case nodeConstants.DELETE_NODE:
           return Object.assign({}, state, {
-            nList: state.nList.filter((node) => {
+            nList: state.nList.filter((node:any) => {
               return node.uniqueId !== action.id
             })
           });
     case nodeConstants.UPDATE_NODES://configuration:{ variables: {instanceName : InstName , instanceType: InstType}},
-          let indx= state.nList.findIndex(node=> node.uniqueId===action.config.id);
+          let indx= state.nList.findIndex((node:any)=> node.uniqueId===action.config.id);
           state.nList[indx].configuration={"variables":action.config.configuration};
           return Object.assign({}, state, state.nList);
     case nodeConstants.UPDATE_NODES_CONN:
-          let ind= state.nList.findIndex(node=> node.uniqueId===action.config.id);
+          let ind= state.nList.findIndex((node:any)=> node.uniqueId===action.config.id);
           state.nList[ind].connectedTo=action.config.connectedTo;
           state.nList[ind].connectedFrom=action.config.connectedFrom;
           return Object.assign({}, state, state.nList);
